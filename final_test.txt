@@ -1,0 +1,278 @@
+Database final test
+8-2-24
+
+
+1]
+mysql> use final_test;
+Database changed
+mysql> create table patients (id int primary key, name varchar(20), age int ,gender char(1),city varchar(20),date_of_admission date,status varchar(20));
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> desc patients;
++-------------------+-------------+------+-----+---------+-------+
+| Field             | Type        | Null | Key | Default | Extra |
++-------------------+-------------+------+-----+---------+-------+
+| id                | int         | NO   | PRI | NULL    |       |
+| name              | varchar(20) | YES  |     | NULL    |       |
+| age               | int         | YES  |     | NULL    |       |
+| gender            | char(1)     | YES  |     | NULL    |       |
+| city              | varchar(20) | YES  |     | NULL    |       |
+| date_of_admission | date        | YES  |     | NULL    |       |
+| status            | varchar(20) | YES  |     | NULL    |       |
++-------------------+-------------+------+-----+---------+-------+
+7 rows in set (0.04 sec)
+
+mysql> insert into patients(id,name,age,gender,city,date_of_admission,status) values
+    -> (2,"siya",21,"F","Mumbai","2023-02-21","admitted"),
+    -> (3,"Mahesh",29,"M","Ahemadabad","2020-03-11","admitted"),
+    -> (4,"Paresh",29,"M","Pune","2023-10-26","discharged"),
+    -> (5,"Krishiv",10,"M","Mumbai","2023-07-26","discharged"),
+    -> (6,"Krishna",40,"F","Mumbai","2024-01-26","admitted"),
+    -> (7,"Kriyansh",43,"M","Nagpur","2022-01-26","discharged"),
+    -> (8,"Vishal",12,"M","Pune","2024-02-06","admitted");
+Query OK, 7 rows affected (0.01 sec)
+Records: 7  Duplicates: 0  Warnings: 0
+
+mysql> select * from Patients;
++----+----------+------+--------+------------+-------------------+------------+
+| id | name     | age  | gender | city       | date_of_admission | status     |
++----+----------+------+--------+------------+-------------------+------------+
+|  1 | riya     |   20 | F      | Pune       | 2024-01-21        | admitted   |
+|  2 | siya     |   21 | F      | Mumbai     | 2023-02-21        | admitted   |
+|  3 | Mahesh   |   29 | M      | Ahemadabad | 2020-03-11        | admitted   |
+|  4 | Paresh   |   29 | M      | Pune       | 2023-10-26        | discharged |
+|  5 | Krishiv  |   10 | M      | Mumbai     | 2023-07-26        | discharged |
+|  6 | Krishna  |   40 | F      | Mumbai     | 2024-01-26        | admitted   |
+|  7 | Kriyansh |   43 | M      | Nagpur     | 2022-01-26        | discharged |
+|  8 | Vishal   |   12 | M      | Pune       | 2024-02-06        | admitted   |
++----+----------+------+--------+------------+-------------------+------------+
+8 rows in set (0.00 sec)
+
+
+
+2]
+
+mysql> desc doctor;
++---------------------+-------------+------+-----+---------+-------+
+| Field               | Type        | Null | Key | Default | Extra |
++---------------------+-------------+------+-----+---------+-------+
+| doc_id              | int         | NO   | PRI | NULL    |       |
+| name                | varchar(20) | YES  |     | NULL    |       |
+| age                 | int         | YES  |     | NULL    |       |
+| gender              | varchar(10) | YES  |     | NULL    |       |
+| city                | varchar(10) | YES  |     | NULL    |       |
+| subject             | varchar(20) | YES  |     | NULL    |       |
+| years_of_experience | int         | YES  |     | NULL    |       |
+| salary              | int         | YES  |     | NULL    |       |
++---------------------+-------------+------+-----+---------+-------+
+8 rows in set (0.00 sec)
+
+mysql> insert into doctor (doc_id,name,age,gender,city,specialization,years_of_experience,salary) values
+    -> (1,"Arti",30,"f","Ahmedabad","heart",4,29000),
+    -> (2,"Mayank",38,"m","Pune","brain",7,50000),
+    -> (3,"Manav",38,"m","Mumbai","lungs",8,70000),
+    -> (4,"Maya",31,"f","Mumbai","cancer",2,90000),
+    -> (5,"Siya",39,"f","Pune","cancer",3,98000),
+    -> (6,"Piya",26,"m","Ahemdabad","dentists",5,54000),
+    -> (7,"Niya",24,"f","Nagpur","dentists",1,20000),
+    -> (8,"Lily",22,"f","Pune","brain",1,29000);
+Query OK, 8 rows affected (0.01 sec)
+Records: 8  Duplicates: 0  Warnings: 0
+
+mysql> select * from doctor;
++--------+--------+------+--------+-----------+----------------+---------------------+--------+
+| doc_id | name   | age  | gender | city      | specialization | years_of_experience | salary |
++--------+--------+------+--------+-----------+----------------+---------------------+--------+
+|      1 | Arti   |   30 | f      | Ahmedabad | heart          |                   4 |  29000 |
+|      2 | Mayank |   38 | m      | Pune      | brain          |                   7 |  50000 |
+|      3 | Manav  |   38 | m      | Mumbai    | lungs          |                   8 |  70000 |
+|      4 | Maya   |   31 | f      | Mumbai    | cancer         |                   2 |  90000 |
+|      5 | Siya   |   39 | f      | Pune      | cancer         |                   3 |  98000 |
+|      6 | Piya   |   26 | m      | Ahemdabad | dentists       |                   5 |  54000 |
+|      7 | Niya   |   24 | f      | Nagpur    | dentists       |                   1 |  20000 |
+|      8 | Lily   |   22 | f      | Pune      | brain          |                   1 |  29000 |
++--------+--------+------+--------+-----------+----------------+---------------------+--------+
+8 rows in set (0.00 sec)
+
+
+3]
+
+mysql> alter table doctor
+    -> rename column specialization to subject;
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc doctor
+    -> ;
++---------------------+-------------+------+-----+---------+-------+
+| Field               | Type        | Null | Key | Default | Extra |
++---------------------+-------------+------+-----+---------+-------+
+| doc_id              | int         | NO   | PRI | NULL    |       |
+| name                | varchar(20) | YES  |     | NULL    |       |
+| age                 | int         | YES  |     | NULL    |       |
+| gender              | varchar(10) | YES  |     | NULL    |       |
+| city                | varchar(10) | YES  |     | NULL    |       |
+| subject             | varchar(20) | YES  |     | NULL    |       |
+| years_of_experience | int         | YES  |     | NULL    |       |
+| salary              | int         | YES  |     | NULL    |       |
++---------------------+-------------+------+-----+---------+-------+
+8 rows in set (0.00 sec)
+
+
+4]
+
+mysql> create table bkup_patients as select * from Patients;
+Query OK, 8 rows affected (0.04 sec)
+Records: 8  Duplicates: 0  Warnings: 0
+
+mysql> select * from bkup_patients;
++----+----------+------+--------+------------+-------------------+------------+
+| id | name     | age  | gender | city       | date_of_admission | status     |
++----+----------+------+--------+------------+-------------------+------------+
+|  1 | riya     |   20 | F      | Pune       | 2024-01-21        | admitted   |
+|  2 | siya     |   21 | F      | Mumbai     | 2023-02-21        | admitted   |
+|  3 | Mahesh   |   29 | M      | Ahemadabad | 2020-03-11        | admitted   |
+|  4 | Paresh   |   29 | M      | Pune       | 2023-10-26        | discharged |
+|  5 | Krishiv  |   10 | M      | Mumbai     | 2023-07-26        | discharged |
+|  6 | Krishna  |   40 | F      | Mumbai     | 2024-01-26        | admitted   |
+|  7 | Kriyansh |   43 | M      | Nagpur     | 2022-01-26        | discharged |
+|  8 | Vishal   |   12 | M      | Pune       | 2024-02-06        | admitted   |
++----+----------+------+--------+------------+-------------------+------------+
+8 rows in set (0.00 sec)
+
+
+mysql> create table bkup_doctor as select * from doctor;
+Query OK, 8 rows affected (0.04 sec)
+Records: 8  Duplicates: 0  Warnings: 0
+
+mysql> select * from bkup_doctor;
++--------+--------+------+--------+-----------+----------+---------------------+--------+
+| doc_id | name   | age  | gender | city      | subject  | years_of_experience | salary |
++--------+--------+------+--------+-----------+----------+---------------------+--------+
+|      1 | Arti   |   30 | f      | Ahmedabad | heart    |                   4 |  29000 |
+|      2 | Mayank |   38 | m      | Pune      | brain    |                   7 |  50000 |
+|      3 | Manav  |   38 | m      | Mumbai    | lungs    |                   8 |  70000 |
+|      4 | Maya   |   31 | f      | Mumbai    | cancer   |                   2 |  90000 |
+|      5 | Siya   |   39 | f      | Pune      | cancer   |                   3 |  98000 |
+|      6 | Piya   |   26 | m      | Ahemdabad | dentists |                   5 |  54000 |
+|      7 | Niya   |   24 | f      | Nagpur    | dentists |                   1 |  20000 |
+|      8 | Lily   |   22 | f      | Pune      | brain    |                   1 |  29000 |
++--------+--------+------+--------+-----------+----------+---------------------+--------+
+8 rows in set (0.00 sec)
+
+
+
+5]
+
+mysql> select * from Patients
+    -> where city = "Pune" or city ="Mumbai";
++----+---------+------+--------+--------+-------------------+------------+
+| id | name    | age  | gender | city   | date_of_admission | status     |
++----+---------+------+--------+--------+-------------------+------------+
+|  1 | riya    |   20 | F      | Pune   | 2024-01-21        | admitted   |
+|  2 | siya    |   21 | F      | Mumbai | 2023-02-21        | admitted   |
+|  4 | Paresh  |   29 | M      | Pune   | 2023-10-26        | discharged |
+|  5 | Krishiv |   10 | M      | Mumbai | 2023-07-26        | discharged |
+|  6 | Krishna |   40 | F      | Mumbai | 2024-01-26        | admitted   |
+|  8 | Vishal  |   12 | M      | Pune   | 2024-02-06        | admitted   |
++----+---------+------+--------+--------+-------------------+------------+
+6 rows in set (0.01 sec)
+
+
+6]
+
+mysql> select * from doctor
+    -> where city ="Ahmedabad" and name like 'A%';
++--------+------+------+--------+-----------+---------+---------------------+--------+
+| doc_id | name | age  | gender | city      | subject | years_of_experience | salary |
++--------+------+------+--------+-----------+---------+---------------------+--------+
+|      1 | Arti |   30 | f      | Ahmedabad | heart   |                   4 |  29000 |
++--------+------+------+--------+-----------+---------+---------------------+--------+
+1 row in set (0.01 sec)
+
+
+
+7]
+
+mysql> select * from doctor
+    -> where years_of_experience >= 4;
++--------+--------+------+--------+-----------+----------+---------------------+--------+
+| doc_id | name   | age  | gender | city      | subject  | years_of_experience | salary |
++--------+--------+------+--------+-----------+----------+---------------------+--------+
+|      1 | Arti   |   30 | f      | Ahmedabad | heart    |                   4 |  29000 |
+|      2 | Mayank |   38 | m      | Pune      | brain    |                   7 |  50000 |
+|      3 | Manav  |   38 | m      | Mumbai    | lungs    |                   8 |  70000 |
+|      6 | Piya   |   26 | m      | Ahemdabad | dentists |                   5 |  54000 |
++--------+--------+------+--------+-----------+----------+---------------------+--------+
+4 rows in set (0.01 sec)
+
+
+8]
+
+mysql> select * from doctor
+    -> where years_of_experience >5;
++--------+--------+------+--------+--------+---------+---------------------+--------+
+| doc_id | name   | age  | gender | city   | subject | years_of_experience | salary |
++--------+--------+------+--------+--------+---------+---------------------+--------+
+|      2 | Mayank |   38 | m      | Pune   | brain   |                   7 |  50000 |
+|      3 | Manav  |   38 | m      | Mumbai | lungs   |                   8 |  70000 |
++--------+--------+------+--------+--------+---------+---------------------+--------+
+2 rows in set (0.00 sec)
+
+
+
+9]
+
+mysql> select city, count(city) from Patients
+    -> group by city
+    -> having city="Pune" or city = "Mumbai";
++--------+-------------+
+| city   | count(city) |
++--------+-------------+
+| Pune   |           3 |
+| Mumbai |           3 |
++--------+-------------+
+2 rows in set (0.00 sec)
+
+
+10]
+
+mysql> select * from Patients
+    -> where status = "discharged";
++----+----------+------+--------+--------+-------------------+------------+
+| id | name     | age  | gender | city   | date_of_admission | status     |
++----+----------+------+--------+--------+-------------------+------------+
+|  4 | Paresh   |   29 | M      | Pune   | 2023-10-26        | discharged |
+|  5 | Krishiv  |   10 | M      | Mumbai | 2023-07-26        | discharged |
+|  7 | Kriyansh |   43 | M      | Nagpur | 2022-01-26        | discharged |
++----+----------+------+--------+--------+-------------------+------------+
+3 rows in set (0.00 sec)
+
+
+11]
+
+mysql> create table bkup_new_doctor as select * from doctor;
+Query OK, 8 rows affected (0.05 sec)
+Records: 8  Duplicates: 0  Warnings: 0
+
+mysql> create table bkup_new_Patients as select * from Patients;
+Query OK, 8 rows affected (0.04 sec)
+Records: 8  Duplicates: 0  Warnings: 0
+
+12]
+
+
+mysql> create table new(img blob, video blob);
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> desc new
+    -> ;
++-------+------+------+-----+---------+-------+
+| Field | Type | Null | Key | Default | Extra |
++-------+------+------+-----+---------+-------+
+| img   | blob | YES  |     | NULL    |       |
+| video | blob | YES  |     | NULL    |       |
++-------+------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+
